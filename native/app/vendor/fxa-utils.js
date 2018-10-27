@@ -37,6 +37,7 @@ function launchOAuthKeyFlow() {
     })
   }).then((responseString) => {
     loginDetails = JSON.parse(responseString);
+    console.log("responseString",responseString);
     if (! loginDetails.oauthResponse.accessToken) {
       throw new Error('Login Failed. Error: FXA-BAD_TOKEN');
     }
@@ -50,6 +51,7 @@ function launchOAuthKeyFlow() {
       throw new Error('Login Failed. Error: FXA-BAD_PROFILE');
     }
 
+    console.log("JS profile: " + JSON.stringify(profile));
     loginDetails.profile = profile;
 
     // store loginDetails in the Android keychain
